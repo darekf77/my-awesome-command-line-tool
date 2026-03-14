@@ -27,6 +27,6 @@
   "packageJsonOverride": {
     "author": "Darek",
     "description": "Description for my-awesome-command-line-tool. Hello world!",
-    "private": true
+    "private": false
   }
 }
