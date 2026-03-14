@@ -5,9 +5,9 @@
 
   "autoReleaseConfigAllowedItems": [{
     "artifactName": "npm-lib-and-cli-tool",
+    "envName": "prod",
     "releaseType": "manual",
-    "taskName": "npm",
-    "envName": "prod"
+    "taskName": "npm"
   }, {
     "artifactName": "angular-node-app",
     "askUserBeforeFinalAction": true,
