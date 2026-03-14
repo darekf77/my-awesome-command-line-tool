@@ -448,5 +448,9 @@
     "@parcel/watcher-linux-x64-glibc": "2.5.1",
     "@parcel/watcher-win32-x64-msvc": "2.5.1"
   },
-  "bin": {}
+  "bin": {
+    "my-awesome-command-line-tool": "bin/my-awesome-command-line-tool",
+    "my-awesome-command-line-tool-debug": "bin/my-awesome-command-line-tool-debug",
+    "my-awesome-command-line-tool-debug-brk": "bin/my-awesome-command-line-tool-debug-brk"
+  }
 }

@@ -1,7 +1,7 @@
 //#region imports
-import * as os from "os"; // @backend
+import * as os from 'os'; // @backend
 
-import { AsyncPipe, JsonPipe, NgFor } from "@angular/common"; // @browser
+import { AsyncPipe, JsonPipe, NgFor } from '@angular/common'; // @browser
 import {
   inject,
   Injectable,
@@ -12,20 +12,20 @@ import {
   mergeApplicationConfig,
   provideZonelessChangeDetection,
   signal,
-} from "@angular/core"; // @browser
-import { Component } from "@angular/core"; // @browser
-import { VERSION, OnInit } from "@angular/core"; // @browser
-import { toSignal } from "@angular/core/rxjs-interop"; // @browser
-import { MatButtonModule } from "@angular/material/button"; // @browser
-import { MatCardModule } from "@angular/material/card"; // @browser
-import { MatDividerModule } from "@angular/material/divider"; // @browser
-import { MatIconModule } from "@angular/material/icon"; // @browser
-import { MatListModule } from "@angular/material/list"; // @browser
-import { MatTabsModule } from "@angular/material/tabs"; // @browser
+} from '@angular/core'; // @browser
+import { Component } from '@angular/core'; // @browser
+import { VERSION, OnInit } from '@angular/core'; // @browser
+import { toSignal } from '@angular/core/rxjs-interop'; // @browser
+import { MatButtonModule } from '@angular/material/button'; // @browser
+import { MatCardModule } from '@angular/material/card'; // @browser
+import { MatDividerModule } from '@angular/material/divider'; // @browser
+import { MatIconModule } from '@angular/material/icon'; // @browser
+import { MatListModule } from '@angular/material/list'; // @browser
+import { MatTabsModule } from '@angular/material/tabs'; // @browser
 import {
   provideClientHydration,
   withEventReplay,
-} from "@angular/platform-browser";
+} from '@angular/platform-browser';
 import {
   provideRouter,
   Router,
@@ -37,13 +37,13 @@ import {
   Route,
   withHashLocation,
   withComponentInputBinding,
-} from "@angular/router";
-import { provideServiceWorker } from "@angular/service-worker";
-import { provideServerRendering, withRoutes } from "@angular/ssr";
-import { RenderMode, ServerRoute } from "@angular/ssr";
-import Aura from "@primeng/themes/aura"; // @browser
-import { providePrimeNG } from "primeng/config"; // @browser
-import { BehaviorSubject, Observable, map, switchMap } from "rxjs";
+} from '@angular/router';
+import { provideServiceWorker } from '@angular/service-worker';
+import { provideServerRendering, withRoutes } from '@angular/ssr';
+import { RenderMode, ServerRoute } from '@angular/ssr';
+import Aura from '@primeng/themes/aura'; // @browser
+import { providePrimeNG } from 'primeng/config'; // @browser
+import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 import {
   Taon,
   TaonBaseContext,
@@ -59,25 +59,25 @@ import {
   TaonMigration,
   TaonBaseMigration,
   TaonContext,
-} from "taon/src";
-import { Utils, UtilsOs } from "tnp-core/src";
+} from 'taon/src';
+import { Utils, UtilsOs } from 'tnp-core/src';
 
-import { HOST_CONFIG } from "./app.hosts";
-import { ENV_ANGULAR_NODE_APP_BUILD_PWA_DISABLE_SERVICE_WORKER } from "./lib/env/env.angular-node-app";
+import { HOST_CONFIG } from './app.hosts';
+import { ENV_ANGULAR_NODE_APP_BUILD_PWA_DISABLE_SERVICE_WORKER } from './lib/env/env.angular-node-app';
 // @placeholder-for-imports
 //#endregion
 
 //#region constants
 const firstHostConfig = (Object.values(HOST_CONFIG) || [])[0];
-console.log("Your backend host " + firstHostConfig?.host);
-console.log("Your frontend host " + firstHostConfig?.frontendHost);
+console.log('Your backend host ' + firstHostConfig?.host);
+console.log('Your frontend host ' + firstHostConfig?.frontendHost);
 //#endregion
 
 //#region my-awesome-command-line-tool component
 
 //#region @browser
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
 
   imports: [
     // RouterOutlet,
@@ -100,7 +100,10 @@ console.log("Your frontend host " + firstHostConfig?.frontendHost);
   template: `
     @if (itemsLoaded()) {
       @if (navItems.length > 0) {
-        <nav mat-tab-nav-bar class="shadow-1" [tabPanel]="tabPanel">
+        <nav
+          mat-tab-nav-bar
+          class="shadow-1"
+          [tabPanel]="tabPanel">
           @for (item of navItems; track item.path) {
             <a
               mat-tab-link
@@ -111,14 +114,12 @@ console.log("Your frontend host " + firstHostConfig?.frontendHost);
                   ? 'underline'
                   : 'none'
               "
-              (click)="navigateTo(item)"
-            >
-              @if (item.path === "/") {
+              (click)="navigateTo(item)">
+              @if (item.path === '/') {
                 <mat-icon
                   aria-hidden="false"
                   aria-label="Example home icon"
-                  fontIcon="home"
-                ></mat-icon>
+                  fontIcon="home"></mat-icon>
               } @else {
                 {{ item.label }}
               }
@@ -149,14 +150,19 @@ console.log("Your frontend host " + firstHostConfig?.frontendHost);
               @for (user of users(); track user.id) {
                 <li>
                   {{ user | json }}
-                  <button mat-flat-button (click)="deleteUser(user)">
+                  <button
+                    mat-flat-button
+                    (click)="deleteUser(user)">
                     <mat-icon>delete user</mat-icon>
                   </button>
                 </li>
               }
             </ul>
             <br />
-            <button class="ml-1" matButton="outlined" (click)="addUser()">
+            <button
+              class="ml-1"
+              matButton="outlined"
+              (click)="addUser()">
               Add new example user with random name
             </button>
           </mat-card-content>
@@ -179,16 +185,16 @@ export class MyAwesomeCommandLineToolApp implements OnInit {
     MyAwesomeCommandLineToolClientRoutes.length <= 1
       ? []
       : MyAwesomeCommandLineToolClientRoutes.filter(
-          (r) => r.path !== undefined,
-        ).map((r) => ({
-          path: r.path === "" ? "/" : `/${r.path}`,
-          label: r.path === "" ? "Home" : `${r.path}`,
+          r => r.path !== undefined,
+        ).map(r => ({
+          path: r.path === '' ? '/' : `/${r.path}`,
+          label: r.path === '' ? 'Home' : `${r.path}`,
         }));
 
   activatedRoute = inject(ActivatedRoute);
 
   get activePath(): string {
-    return globalThis?.location.pathname?.split("?")[0];
+    return globalThis?.location.pathname?.split('?')[0];
   }
 
   ngOnInit(): void {
@@ -201,7 +207,7 @@ export class MyAwesomeCommandLineToolApp implements OnInit {
     });
   }
 
-  taonMode = UtilsOs.isRunningInWebSQL() ? "websql" : "normal nodejs";
+  taonMode = UtilsOs.isRunningInWebSQL() ? 'websql' : 'normal nodejs';
 
   angularVersion = VERSION.full;
 
@@ -217,7 +223,7 @@ export class MyAwesomeCommandLineToolApp implements OnInit {
         this.userApiService.userController
           .getAll()
           .request()
-          .observable.pipe(map((r) => r.body.json)),
+          .observable.pipe(map(r => r.body.json)),
       ),
     ),
     { initialValue: [] },
@@ -226,7 +232,7 @@ export class MyAwesomeCommandLineToolApp implements OnInit {
   readonly hello$ = this.userApiService.userController
     .helloWorld()
     .request()
-    .observable.pipe(map((r) => r.body.text));
+    .observable.pipe(map(r => r.body.text));
 
   async deleteUser(userToDelete: User): Promise<void> {
     await this.userApiService.userController
@@ -245,7 +251,7 @@ export class MyAwesomeCommandLineToolApp implements OnInit {
   forceShowBaseRootApp = false;
 
   navigateTo(item: { path: string; label: string }): void {
-    if (item.path === "/") {
+    if (item.path === '/') {
       if (this.forceShowBaseRootApp) {
         return;
       }
@@ -264,7 +270,7 @@ export class MyAwesomeCommandLineToolApp implements OnInit {
 
 //#region @browser
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class UserApiService extends TaonBaseAngularService {
   userController = this.injectController(UserController);
@@ -273,7 +279,7 @@ export class UserApiService extends TaonBaseAngularService {
     return this.userController
       .getAll()
       .request()
-      .observable.pipe(map((r) => r.body.json));
+      .observable.pipe(map(r => r.body.json));
   }
 }
 //#endregion
@@ -284,19 +290,19 @@ export class UserApiService extends TaonBaseAngularService {
 //#region @browser
 export const MyAwesomeCommandLineToolServerRoutes: ServerRoute[] = [
   {
-    path: "**",
+    path: '**',
     renderMode: RenderMode.Prerender,
   },
 ];
 export const MyAwesomeCommandLineToolClientRoutes: Routes = [
   {
-    path: "",
-    pathMatch: "full",
+    path: '',
+    pathMatch: 'full',
     redirectTo: () => {
       if (MyAwesomeCommandLineToolClientRoutes.length === 1) {
-        return "";
+        return '';
       }
-      return MyAwesomeCommandLineToolClientRoutes.find((r) => r.path !== "")!
+      return MyAwesomeCommandLineToolClientRoutes.find(r => r.path !== '')!
         .path!;
     },
   },
@@ -333,10 +339,10 @@ export const MyAwesomeCommandLineToolAppConfig: ApplicationConfig = {
       withComponentInputBinding(),
     ),
     provideClientHydration(withEventReplay()),
-    provideServiceWorker("ngsw-worker.js", {
+    provideServiceWorker('ngsw-worker.js', {
       enabled:
         !isDevMode() && !ENV_ANGULAR_NODE_APP_BUILD_PWA_DISABLE_SERVICE_WORKER,
-      registrationStrategy: "registerWhenStable:30000",
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
 };
@@ -355,7 +361,7 @@ export const MyAwesomeCommandLineToolConfig = mergeApplicationConfig(
 //#endregion
 
 //#region  my-awesome-command-line-tool entity
-@TaonEntity({ className: "User" })
+@TaonEntity({ className: 'User' })
 class User extends TaonBaseAbstractEntity {
   //#region @websql
   @StringColumn()
@@ -369,7 +375,7 @@ class User extends TaonBaseAbstractEntity {
 //#endregion
 
 //#region  my-awesome-command-line-tool controller
-@TaonController({ className: "UserController" })
+@TaonController({ className: 'UserController' })
 class UserController extends TaonBaseCrudController<User> {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   entityClassResolveFn = () => User;
@@ -377,7 +383,7 @@ class UserController extends TaonBaseCrudController<User> {
   @GET()
   helloWorld(): Taon.Response<string> {
     //#region @websqlFunc
-    return async (req, res) => "hello world";
+    return async (req, res) => 'hello world';
     //#endregion
   }
 
@@ -389,7 +395,7 @@ class UserController extends TaonBaseCrudController<User> {
       return os.platform(); // for normal nodejs backend return real value
       //#endregion
 
-      return "no-platform-inside-browser-and-websql-mode";
+      return 'no-platform-inside-browser-and-websql-mode';
     };
     //#endregion
   }
@@ -400,14 +406,14 @@ class UserController extends TaonBaseCrudController<User> {
 
 //#region @websql
 @TaonMigration({
-  className: "UserMigration",
+  className: 'UserMigration',
 })
 class UserMigration extends TaonBaseMigration {
   userController = this.injectRepo(User);
 
   async up(): Promise<any> {
     const superAdmin = new User();
-    superAdmin.name = "super-admin";
+    superAdmin.name = 'super-admin';
     await this.userController.save(superAdmin);
   }
 }
@@ -417,7 +423,7 @@ class UserMigration extends TaonBaseMigration {
 
 //#region  my-awesome-command-line-tool context
 var MyAwesomeCommandLineToolContext = Taon.createContext(() => ({
-  ...HOST_CONFIG["MyAwesomeCommandLineToolContext"],
+  ...HOST_CONFIG['MyAwesomeCommandLineToolContext'],
   contexts: { TaonBaseContext },
 
   //#region @websql
@@ -459,7 +465,7 @@ export const MyAwesomeCommandLineToolStartFunction = async (
   const activeContextsForApp: TaonContext[] = [
     ...priorityContexts,
     ...autoGeneratedActiveContextsForApp.filter(
-      (c) => !priorityContexts.includes(c),
+      c => !priorityContexts.includes(c),
     ),
   ];
 

@@ -6,7 +6,8 @@
   "autoReleaseConfigAllowedItems": [{
     "artifactName": "npm-lib-and-cli-tool",
     "releaseType": "manual",
-    "taskName": "npm"
+    "taskName": "npm",
+    "envName": "prod"
   }, {
     "artifactName": "angular-node-app",
     "askUserBeforeFinalAction": true,
@@ -27,6 +28,7 @@
   "packageJsonOverride": {
     "author": "Darek",
     "description": "Description for my-awesome-command-line-tool. Hello world!",
-    "private": false
+    "private": false,
+    "scripts": {}
   }
 }
